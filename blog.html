@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Luis F. Soto-Ugaldi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-page {
+            padding: 8rem 5% 5rem;
+        }
+        
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+        
+        .blog-main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .blog-post {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-header {
+            position: relative;
+        }
+        
+        .featured-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+        
+        .blog-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 2rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+        
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .blog-excerpt {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .blog-tag {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: var(--primary-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 6rem;
+            height: fit-content;
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .widget-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .search-form {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 0.95rem;
+        }
+        
+        .search-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        
+        .category-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dark-color);
+        }
+        
+        .category-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .category-count {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .recent-post {
+            display: flex;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .recent-post:last-child {
+            border-bottom: none;
+        }
+        
+        .recent-post-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .recent-post-info {
+            flex: 1;
+        }
+        
+        .recent-post-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+        
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag-cloud a {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .tag-cloud a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .page-item {
+            margin: 0 0.25rem;
+        }
+        
+        .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            color: var(--dark-color);
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .page-link:hover,
+        .page-link.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        @media screen and (max-width: 992px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">LFS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#research">Research</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <section class="blog-page">
+        <h1 class="section-title">Research Blog</h1>
+        
+        <div class="blog-container">
+            <div class="blog-main">
+                <!-- Featured Blog Post -->
+                <article class="blog-post">
+                    <div class="blog-header">
+                        <span class="featured-tag">Featured</span>
+                        <img src="/api/placeholder/800/300" alt="Transcription Factor Networks" class="blog-img">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span>March 1, 2025</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-comments"></i>
+                                <span>8 Comments</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-eye"></i>
+                                <span>342 Views</span>
+                            </div>
+                        </div>
+                        <h2 class="blog-title">The Future of Transcription Factor Network Analysis in Cancer Research</h2>
+                        <div class="blog-excerpt">
+                            <p>The landscape of cancer research is rapidly evolving with the integration of multi-omics data and advanced computational approaches. Transcription factor network analysis has emerged as a powerful tool for understanding the complex regulatory mechanisms underlying cancer development and progression.</p>
+                            <p>In this blog post, I explore recent advances in transcription factor network analysis and discuss how these approaches are revolutionizing our understanding of cancer biology...</p>
+                        </div>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Transcription Factors</span>
+                            <span class="blog-tag">Cancer Research</span>
+                            <span class="blog-tag">Network Analysis</span>
+                            <span class="blog-tag">Computational Biology</span>
+                        </div>
+                        <a href="blog-post.html" class="btn">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Regular Blog Posts -->
+                <article class="blog-post">
+                    <div class="blog-header">
+                        <img src="/api/placeholder/800/300" alt="Immunoinformatics Approaches" class="blog-img">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span>February 15, 2025</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-comments"></i>
+                                <span>5 Comments</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-eye"></i>
+                                <span>287 Views</span>
+                            </div>
+                        </div>
+                        <h2 class="blog-title">Immunoinformatics Approaches for Vaccine Design: Lessons from COVID-19</h2>
+                        <div class="blog-excerpt">
+                            <p>The COVID-19 pandemic has accelerated the development and application of immunoinformatics approaches for vaccine design. Computational tools for epitope prediction, population coverage analysis, and immunogenicity assessment have played a crucial role in the rapid development of effective vaccines against SARS-CoV-2.</p>
+                            <p>In this article, I discuss key lessons learned from immunoinformatics applications during the COVID-19 pandemic and their implications for future vaccine development...</p>
+                        </div>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Immunoinformatics</span>
+                            <span class="blog-tag">Vaccine Design</span>
+                            <span class="blog-tag">COVID-19</span>
+                            <span class="blog-tag">Epitope Prediction</span>
+                        </div>
+                        <a href="blog-post.html" class="btn">Read More</a>
+                    </div>
+                </article>
+                
+                <article class="blog-post">
+                    <div class="blog-header">
+                        <img src="/api/placeholder/800/300" alt="Single-cell Analysis" class="blog-img">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-meta-item">
+                                <i class="far fa-calendar"></i>
+                                <span>January 28, 2025</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-comments"></i>
+                                <span>3 Comments</span>
+                            </div>
+                            <div class="blog-meta-item">
+                                <i class="far fa-eye"></i>
+                                <span>214 Views</span>
+                            </div>
+                        </div>
+                        <h2 class="blog-title">Advances in Single-cell Multi-omics Analysis for Cancer Research</h2>
+                        <div class="blog-excerpt">
+                            <p>Single-cell multi-omics technologies have revolutionized our ability to study heterogeneity in cancer and discover new cellular states and dynamics. These technologies allow researchers to profile multiple molecular characteristics (e.g., transcriptome, epigenome, proteome) from the same cell, providing unprecedented insights into cancer biology.</p>
+                            <p>This blog post explores recent advances in single-cell multi-omics analysis and their applications in cancer research, focusing on computational methods for data integration and analysis...</p>
+                        </div>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Single-cell Analysis</span>
+                            <span class="blog-tag">Multi-omics</span>
+                            <span class="blog-tag">Cancer Research</span>
+                            <span class="blog-tag">Computational Methods</span>
+                        </div>
+                        <a href="blog-post.html" class="btn">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <div class="page-item">
+                        <a href="#" class="page-link active">1</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link">2</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link">3</a>
+                    </div>
+                    <div class="page-item">
+                        <a href="#" class="page-link">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <!-- Search Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Search</h3>
+                    <form class="search-form">
+                        <input type="text" class="search-input" placeholder="Search blog...">
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Categories Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="category-list">
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Transcription Factors</span>
+                                <span class="category-count">8</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Bioinformatics Tools</span>
+                                <span class="category-count">6</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Cancer Research</span>
+                                <span class="category-count">5</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Vaccine Design</span>
+                                <span class="category-count">4</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Machine Learning</span>
+                                <span class="category-count">3</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Data Visualization</span>
+                                <span class="category-count">3</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Recent Posts Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Recent Posts</h3>
+                    <div class="recent-posts">
+                        <div class="recent-post">
+                            <img src="/api/placeholder/70/70" alt="Post" class="recent-post-img">
+                            <div class="recent-post-info">
+                                <h4 class="recent-post-title">
+                                    <a href="#">The Role of Machine Learning in Biomarker Discovery</a>
+                                </h4>
+                                <p class="recent-post-date">January 10, 2025</p>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="/api/placeholder/70/70" alt="Post" class="recent-post-img">
+                            <div class="recent-post-info">
+                                <h4 class="recent-post-title">
+                                    <a href="#">Visualization Techniques for Genomic Data</a>
+                                </h4>
+                                <p class="recent-post-date">December 22, 2024</p>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="/api/placeholder/70/70" alt="Post" class="recent-post-img">
+                            <div class="recent-post-info">
+                                <h4 class="recent-post-title">
+                                    <a href="#">Best Practices in Computational Biology</a>
+                                </h4>
+                                <p class="recent-post-date">December 15, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tags Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Tags</h3>
+                    <div class="tag-cloud">
+                        <a href="#">Bioinformatics</a>
+                        <a href="#">Genomics</a>
+                        <a href="#">Cancer</a>
+                        <a href="#">COVID-19</a>
+                        <a href="#">Machine Learning</a>
+                        <a href="#">Python</a>
+                        <a href="#">R</a>
+                        <a href="#">RNA-seq</a>
+                        <a href="#">Transcription</a>
+                        <a href="#">Vaccine</a>
+                        <a href="#">Visualization</a>
+                        <a href="#">Network Analysis</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Luis F. Soto-Ugaldi</h3>
+                <p>Bioinformatics Researcher</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="publications.html">All Publications</a></li>
+                    <li><a href="cv.html">Curriculum Vitae</a></li>
+                    <li><a href="resources.html">Research Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Luis F. Soto-Ugaldi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Luis F. Soto-Ugaldi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cv-page {
+            padding: 8rem 5% 5rem;
+        }
+        
+        .cv-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        .cv-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .cv-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cv-header h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cv-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .cv-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cv-content {
+            padding: 3rem;
+        }
+        
+        .cv-section {
+            margin-bottom: 3rem;
+        }
+        
+        .cv-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cv-section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .cv-section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .cv-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .cv-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cv-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cv-item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .cv-item-date {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .cv-item-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .cv-item-description {
+            color: var(--gray-color);
+            line-height: 1.6;
+        }
+        
+        .cv-item-bullets {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        
+        .cv-item-bullets li {
+            position: relative;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .cv-item-bullets li::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            left: -1.5rem;
+            top: 0.5rem;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .skill-item {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .cv-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .cv-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .btn-download {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-print {
+            background-color: var(--gray-color);
+            color: white;
+        }
+        
+        .btn-print:hover {
+            background-color: #5a6268;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            
+            .navbar, footer, .cv-buttons {
+                display: none;
+            }
+            
+            .cv-page {
+                padding: 0;
+            }
+            
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">LFS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#research">Research</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <section class="cv-page">
+        <div class="cv-container">
+            <div class="cv-header">
+                <h1>Luis F. Soto-Ugaldi</h1>
+                <h2>Bioinformatics Researcher</h2>
+                
+                <div class="cv-contact">
+                    <div class="cv-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>email@example.com</span>
+                    </div>
+                    <div class="cv-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 (123) 456-7890</span>
+                    </div>
+                    <div class="cv-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>City, Country</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cv-content">
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Professional Summary</h2>
+                    <p>Bioinformatician and computational biologist with expertise in transcription factor analysis, immunoinformatics, and developing computational tools for biological data analysis. Experienced in multi-omics data integration and applying computational approaches to solving complex biological problems, particularly in the areas of vaccine design, protein-DNA interactions, and disease research.</p>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Work Experience</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Senior Bioinformatics Researcher</h3>
+                            <span class="cv-item-date">2022 - Present</span>
+                        </div>
+                        <h4 class="cv-item-subtitle">Research Institution Name</h4>
+                        <ul class="cv-item-bullets">
+                            <li>Lead bioinformatics analysis for transcription factor network studies, developing novel computational methods to identify and characterize protein-DNA interactions</li>
+                            <li>Developed web applications and computational tools for immunoinformatic analysis, including epitope prediction and evaluation for vaccine design</li>
+                            <li>Integrated multi-omics data to identify and validate biomarkers for various diseases, including COVID-19 and liver cancer</li>
+                            <li>Collaborated with experimental biologists to design and analyze high-throughput experiments, including yeast one-hybrid assays and next-generation sequencing studies</li>
+                            <li>Mentored junior researchers and graduate students in computational biology methods and bioinformatics tool development</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Bioinformatics Scientist</h3>
+                            <span class="cv-item-date">2020 - 2022</span>
+                        </div>
+                        <h4 class="cv-item-subtitle">Previous Institution Name</h4>
+                        <ul class="cv-item-bullets">
+                            <li>Conducted computational analysis for COVID-19 research, including virtual screening of potential SARS-CoV-2 inhibitors and development of biomarkers for disease severity</li>
+                            <li>Designed and implemented computational pipelines for next-generation sequencing data analysis</li>
+                            <li>Collaborated on development of immunoinformatic approaches for vaccine design against infectious diseases</li>
+                            <li>Published research findings in peer-reviewed journals and presented at international conferences</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Bioinformatics Research Assistant</h3>
+                            <span class="cv-item-date">2015 - 2020</span>
+                        </div>
+                        <h4 class="cv-item-subtitle">University Research Lab</h4>
+                        <ul class="cv-item-bullets">
+                            <li>Developed and implemented computational tools for transcription factor binding site analysis</li>
+                            <li>Performed bioinformatics analysis of next-generation sequencing data, including RNA-seq, ChIP-seq, and ATAC-seq</li>
+                            <li>Contributed to the development of databases and web applications for biological data analysis</li>
+                            <li>Assisted in grant writing and preparation of research publications</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Education</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Ph.D. in Bioinformatics</h3>
+                            <span class="cv-item-date">2015 - 2020</span>
+                        </div>
+                        <h4 class="cv-item-subtitle">University Name</h4>
+                        <p class="cv-item-description">Dissertation: "Computational approaches for transcription factor analysis and vaccine design."</p>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">M.Sc. in Computational Biology</h3>
+                            <span class="cv-item-date">2013 - 2015</span>
+                        </div>
+                        <h4 class="cv-item-subtitle">University Name</h4>
+                        <p class="cv-item-description">Focused on developing algorithms for biological sequence analysis and protein structure prediction.</p>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">B.Sc. in Biology</h3>
+                            <span class="cv-item-date">2009 - 2013</span>
+                        </div>
+                        <h4 class="cv-item-subtitle">University Name</h4>
+                        <p class="cv-item-description">Specialization in molecular biology with minor in computer science.</p>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Skills</h2>
+                    
+                    <div class="skills-container">
+                        <div>
+                            <div class="skill-category">
+                                <h3>Programming Languages</h3>
+                                <div class="skill-list">
+                                    <span class="skill-item">Python</span>
+                                    <span class="skill-item">R</span>
+                                    <span class="skill-item">Perl</span>
+                                    <span class="skill-item">JavaScript</span>
+                                    <span class="skill-item">C++</span>
+                                    <span class="skill-item">Bash</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3>Bioinformatics & Computational Biology</h3>
+                                <div class="skill-list">
+                                    <span class="skill-item">Next-Gen Sequencing Analysis</span>
+                                    <span class="skill-item">RNA-seq</span>
+                                    <span class="skill-item">ChIP-seq</span>
+                                    <span class="skill-item">ATAC-seq</span>
+                                    <span class="skill-item">Single-cell Analysis</span>
+                                    <span class="skill-item">Genomics</span>
+                                    <span class="skill-item">Proteomics</span>
+                                    <span class="skill-item">Phylogenetics</span>
+                                    <span class="skill-item">Sequence Analysis</span>
+                                    <span class="skill-item">Protein Structure Prediction</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="skill-category">
+                                <h3>Data Analysis & Machine Learning</h3>
+                                <div class="skill-list">
+                                    <span class="skill-item">Scikit-learn</span>
+                                    <span class="skill-item">TensorFlow</span>
+                                    <span class="skill-item">Pandas</span>
+                                    <span class="skill-item">NumPy</span>
+                                    <span class="skill-item">Bioconductor</span>
+                                    <span class="skill-item">Statistical Analysis</span>
+                                    <span class="skill-item">Data Visualization</span>
+                                    <span class="skill-item">Multivariate Analysis</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h3>Tools & Technologies</h3>
+                                <div class="skill-list">
+                                    <span class="skill-item">Git</span>
+                                    <span class="skill-item">Docker</span>
+                                    <span class="skill-item">AWS</span>
+                                    <span class="skill-item">Galaxy</span>
+                                    <span class="skill-item">Jupyter</span>
+                                    <span class="skill-item">Biopython</span>
+                                    <span class="skill-item">Bioconductor</span>
+                                    <span class="skill-item">Unix/Linux</span>
+                                    <span class="skill-item">RESTful APIs</span>
+                                    <span class="skill-item">Databases</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Publications</h2>
+                    <p>Author of 15 peer-reviewed publications in high-impact journals including Molecular Cell, Nature Communications, and Scientific Reports. Key publications include:</p>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Compendium of human transcription factor effector domains</h3>
+                            <span class="cv-item-date">2022</span>
+                        </div>
+                        <p class="cv-item-description">LF Soto, Z Li, CS Santoso, A Berenson, I Ho, VX Shen, S Yuan, JIF Bass. Molecular Cell 82 (3), 514-526</p>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Paired yeast one-hybrid assays to detect DNA-binding cooperativity and antagonism across transcription factors</h3>
+                            <span class="cv-item-date">2023</span>
+                        </div>
+                        <p class="cv-item-description">A Berenson, R Lane, LF Soto-Ugaldi, M Patel, C Ciausu, Z Li, Y Chen, et al. Nature Communications 14 (1), 6570</p>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Comprehensive virtual screening of 4.8 k flavonoids reveals novel insights into allosteric inhibition of SARS-CoV-2 MPRO</h3>
+                            <span class="cv-item-date">2021</span>
+                        </div>
+                        <p class="cv-item-description">G Jiménez-Avalos, AP Vargas-Ruiz, NE Delgado-Pease, LF Soto-Ugaldi, et al. Scientific Reports 11 (1), 15452</p>
+                    </div>
+                    
+                    <p><a href="publications.html" class="cv-item-link">See full list of publications →</a></p>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Projects & Software</h2>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">Epitope-Evaluator</h3>
+                            <span class="cv-item-date">2022</span>
+                        </div>
+                        <p class="cv-item-description">An interactive web application for T-cell epitope prediction and evaluation for vaccine design. Features include prediction of MHC binding affinity, immunogenicity assessment, and visualization tools for epitope analysis.</p>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">TF-NetViz</h3>
+                            <span class="cv-item-date">2023</span>
+                        </div>
+                        <p class="cv-item-description">A visualization tool for transcription factor regulatory networks, enabling researchers to understand gene regulation patterns and identify key regulatory hubs.</p>
+                    </div>
+                    
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h3 class="cv-item-title">COVID Biomarker Pipeline</h3>
+                            <span class="cv-item-date">2022</span>
+                        </div>
+                        <p class="cv-item-description">Analysis pipeline for identifying and validating potential COVID-19 biomarkers from clinical data, including machine learning models for predicting disease severity.</p>
+                    </div>
+                    
+                    <p><a href="projects.html" class="cv-item-link">View all projects →</a></p>
+                </div>
+            </div>
+            
+            <div class="cv-buttons">
+                <a href="Soto-Ugaldi_CV.pdf" class="cv-btn btn-download" download>
+                    <i class="fas fa-download"></i>
+                    <span>Download CV (PDF)</span>
+                </a>
+                <button class="cv-btn btn-print" onclick="window.print()">
+                    <i class="fas fa-print"></i>
+                    <span>Print CV</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Luis F. Soto-Ugaldi</h3>
+                <p>Bioinformatics Researcher</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="publications.html">All Publications</a></li>
+                    <li><a href="cv.html">Curriculum Vitae</a></li>
+                    <li><a href="resources.html">Research Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Luis F. Soto-Ugaldi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

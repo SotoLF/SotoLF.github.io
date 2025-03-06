@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Luis F. Soto-Ugaldi</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .projects-page {
+            padding: 8rem 5% 5rem;
+        }
+        
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            background-color: var(--light-color);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .project-card-large {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+        
+        .project-card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-header {
+            position: relative;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .project-overview {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+        
+        .project-overview h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-overview p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .project-body {
+            padding: 2rem;
+        }
+        
+        .project-description {
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .project-features {
+            margin-bottom: 2rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .feature-item i {
+            color: var(--secondary-color);
+            margin-top: 0.2rem;
+        }
+        
+        .project-tech {
+            margin-bottom: 2rem;
+        }
+        
+        .tech-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .tech-item {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .btn-github {
+            background-color: #333;
+            color: white;
+        }
+        
+        .btn-github:hover {
+            background-color: #24292e;
+        }
+        
+        .btn-demo {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-demo:hover {
+            background-color: #009688;
+        }
+        
+        .btn-paper {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-paper:hover {
+            background-color: #0048a8;
+        }
+        
+        .btn-documentation {
+            background-color: #6c757d;
+            color: white;
+        }
+        
+        .btn-documentation:hover {
+            background-color: #5a6268;
+        }
+        
+        .related-projects {
+            margin-top: 3rem;
+        }
+        
+        .related-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .related-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .related-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .related-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .related-info {
+            padding: 1.5rem;
+        }
+        
+        .related-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .related-info p {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+            margin-bottom: 1rem;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .project-overview h2 {
+                font-size: 1.5rem;
+            }
+            
+            .project-overview p {
+                font-size: 1rem;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">LFS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#research">Research</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <section class="projects-page">
+        <h1 class="section-title">Research Projects</h1>
+        
+        <div class="projects-container">
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web-app">Web Applications</button>
+                <button class="filter-btn" data-filter="analysis">Analysis Tools</button>
+                <button class="filter-btn" data-filter="database">Databases</button>
+                <button class="filter-btn" data-filter="visualization">Visualization</button>
+            </div>
+            
+            <!-- Epitope Evaluator Project -->
+            <div class="project-card-large" data-categories="web-app analysis">
+                <div class="project-header">
+                    <img src="/api/placeholder/1200/300" alt="Epitope Evaluator" class="project-img">
+                    <div class="project-overview">
+                        <h2>Epitope Evaluator</h2>
+                        <p>Interactive web application for T-cell epitope prediction and evaluation</p>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        <p>Epitope Evaluator is a comprehensive web tool designed to facilitate vaccine development by providing accurate predictions of T-cell epitopes. The tool integrates multiple prediction algorithms, population coverage analysis, and interactive visualization to help researchers identify promising vaccine candidates.</p>
+                        <p>The software was developed to address the need for more accessible and user-friendly tools in immunoinformatics, particularly for researchers working on vaccine design against emerging pathogens. It has been successfully applied in COVID-19 vaccine research and other infectious disease studies.</p>
+                    </div>
+                    
+                    <div class="project-features">
+                        <h3 class="feature-title">Key Features</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>MHC binding affinity prediction using multiple algorithms</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Population coverage analysis for diverse ethnic groups</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Immunogenicity assessment based on peptide properties</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Epitope conservation analysis across strains</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Interactive visualization of prediction results</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Batch processing of protein sequences</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-tech">
+                        <h3 class="tech-title">Technologies Used</h3>
+                        <div class="tech-list">
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">Flask</span>
+                            <span class="tech-item">React</span>
+                            <span class="tech-item">D3.js</span>
+                            <span class="tech-item">Scikit-learn</span>
+                            <span class="tech-item">Pandas</span>
+                            <span class="tech-item">Biopython</span>
+                            <span class="tech-item">Docker</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/epitope-evaluator" target="_blank" class="project-link-btn btn-github">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub Repository</span>
+                        </a>
+                        <a href="https://epitope-evaluator.example.com" target="_blank" class="project-link-btn btn-demo">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Live Demo</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn btn-paper">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Related Publication</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn btn-documentation">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Projects Section -->
+            <div class="related-projects">
+                <h2 class="related-title">Other Projects</h2>
+                
+                <div class="related-container">
+                    <div class="related-card" data-categories="database visualization">
+                        <img src="/api/placeholder/400/200" alt="TF-Effector DB" class="related-img">
+                        <div class="related-info">
+                            <h3>TF-Effector DB</h3>
+                            <p>Database of transcription factor effector domains with structural and functional annotations.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card" data-categories="analysis">
+                        <img src="/api/placeholder/400/200" alt="VaccineScan" class="related-img">
+                        <div class="related-info">
+                            <h3>VaccineScan</h3>
+                            <p>Immunoinformatic pipeline for vaccine design against bacterial and viral pathogens.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card" data-categories="web-app visualization">
+                        <img src="/api/placeholder/400/200" alt="MultiOmics Explorer" class="related-img">
+                        <div class="related-info">
+                            <h3>MultiOmics Explorer</h3>
+                            <p>Interactive visualization tool for exploring multi-omics datasets in cancer research.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card" data-categories="analysis">
+                        <img src="/api/placeholder/400/200" alt="BioPipe" class="related-img">
+                        <div class="related-info">
+                            <h3>BioPipe</h3>
+                            <p>Modular pipeline for processing and analyzing next-generation sequencing data.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Luis F. Soto-Ugaldi</h3>
+                <p>Bioinformatics Researcher</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="publications.html">All Publications</a></li>
+                    <li><a href="cv.html">Curriculum Vitae</a></li>
+                    <li><a href="resources.html">Research Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Luis F. Soto-Ugaldi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Project filtering functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card-large');
+            const relatedCards = document.querySelectorAll('.related-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Filter main project cards
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Filter related project cards
+                    relatedCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add animation when elements come into view
+            const observeElements = document.querySelectorAll('.project-card-large, .related-card');
+            
+            if ('IntersectionObserver' in window && observeElements.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                observeElements.forEach(element => {
+                    element.classList.add('prepare-animation');
+                    observer.observe(element);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+                            <span>Publication</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn btn-documentation">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TF-NetViz Project -->
+            <div class="project-card-large" data-categories="visualization web-app">
+                <div class="project-header">
+                    <img src="/api/placeholder/1200/300" alt="TF-NetViz" class="project-img">
+                    <div class="project-overview">
+                        <h2>TF-NetViz</h2>
+                        <p>Visualization tool for transcription factor regulatory networks</p>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        <p>TF-NetViz is a specialized tool for visualizing and analyzing transcription factor regulatory networks. The tool enables researchers to understand complex gene regulation patterns, identify key regulatory hubs, and explore the dynamics of transcription factor interactions in different biological contexts.</p>
+                        <p>Developed as part of my research on transcription factor effector domains, this tool addresses the challenge of interpreting large-scale protein-DNA interaction data. It provides intuitive visualizations and analysis features that help researchers gain insights into the complex mechanisms of gene regulation.</p>
+                    </div>
+                    
+                    <div class="project-features">
+                        <h3 class="feature-title">Key Features</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Interactive network visualization with customizable layouts</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Integration of multiple data types (ChIP-seq, ATAC-seq, expression)</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Network motif detection and analysis</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Differential network analysis between conditions</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Network centrality metrics and hub identification</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Export options for publication-quality figures</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-tech">
+                        <h3 class="tech-title">Technologies Used</h3>
+                        <div class="tech-list">
+                            <span class="tech-item">R</span>
+                            <span class="tech-item">Shiny</span>
+                            <span class="tech-item">D3.js</span>
+                            <span class="tech-item">NetworkX</span>
+                            <span class="tech-item">Bioconductor</span>
+                            <span class="tech-item">igraph</span>
+                            <span class="tech-item">ggplot2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/tf-netviz" target="_blank" class="project-link-btn btn-github">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub Repository</span>
+                        </a>
+                        <a href="https://tf-netviz.example.com" target="_blank" class="project-link-btn btn-demo">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Live Demo</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn btn-documentation">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COVID Biomarker Pipeline Project -->
+            <div class="project-card-large" data-categories="analysis">
+                <div class="project-header">
+                    <img src="/api/placeholder/1200/300" alt="COVID Biomarker Pipeline" class="project-img">
+                    <div class="project-overview">
+                        <h2>COVID Biomarker Pipeline</h2>
+                        <p>Analysis pipeline for identifying and validating COVID-19 biomarkers</p>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        <p>The COVID Biomarker Pipeline is a comprehensive computational framework designed to identify and validate potential biomarkers for COVID-19 from clinical data. The pipeline integrates various data types, including clinical measurements, immunological parameters, and genomic data, to identify markers associated with disease severity and progression.</p>
+                        <p>Developed in response to the COVID-19 pandemic, this tool has been used to identify several novel biomarkers, including the leukocyte glucose index, which was published as a predictive marker for COVID-19 severity. The pipeline includes machine learning models for biomarker validation and risk prediction.</p>
+                    </div>
+                    
+                    <div class="project-features">
+                        <h3 class="feature-title">Key Features</h3>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Multi-omics data integration framework</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Feature selection algorithms for biomarker discovery</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Machine learning models for outcome prediction</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Statistical validation of potential biomarkers</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Visualization of biomarker performance metrics</div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>Scalable processing of large clinical datasets</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-tech">
+                        <h3 class="tech-title">Technologies Used</h3>
+                        <div class="tech-list">
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">Scikit-learn</span>
+                            <span class="tech-item">Pandas</span>
+                            <span class="tech-item">Numpy</span>
+                            <span class="tech-item">Matplotlib</span>
+                            <span class="tech-item">Seaborn</span>
+                            <span class="tech-item">Statsmodels</span>
+                            <span class="tech-item">Snakemake</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/covid-biomarker" target="_blank" class="project-link-btn btn-github">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub Repository</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn btn-paper">
+                            <i class="fas fa-file-alt"></i>

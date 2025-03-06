@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scientific Publications by Luis F. Soto-Ugaldi - Computational Biology research papers in transcription factor analysis, vaccine design, and bioinformatics">
+    <meta name="keywords" content="publications, scientific papers, bioinformatics, computational biology, transcription factor, vaccine design, Luis Soto-Ugaldi">
+    <meta name="author" content="Luis F. Soto-Ugaldi">
+    <title>Publications - Luis F. Soto-Ugaldi</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .publications-page {
+            padding: 8rem 5% 5rem;
+            background-color: #f9fafb;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .publications-page-container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--dark-color);
+        }
+        
+        .section-description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+            text-align: center;
+            color: var(--gray-color);
+        }
+        
+        .publications-content {
+            padding: 3rem 3rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        
+        .pub-categories {
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .pub-category-btn {
+            background-color: var(--light-color);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark-color);
+        }
+        
+        .pub-category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .pub-category-btn:hover:not(.active) {
+            background-color: rgba(24, 88, 122, 0.1);
+        }
+        
+        .pub-year {
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+        
+        .pub-year-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+        
+        .pub-year-header h2 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-right: 1rem;
+        }
+        
+        .pub-year-header .year-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .publication-item {
+            padding: 1.8rem;
+            background-color: #f9fafb;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .publication-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+        
+        .publication-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .publication-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+        
+        .publication-authors {
+            margin-bottom: 0.7rem;
+            line-height: 1.5;
+            color: var(--gray-color);
+        }
+        
+        .author-highlight {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .publication-journal {
+            font-style: italic;
+            color: var(--gray-color);
+            margin-bottom: 0.7rem;
+        }
+        
+        .journal-name {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .publication-meta {
+            margin-top: 1.2rem;
+        }
+        
+        .pub-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pub-tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(24, 88, 122, 0.07);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .pub-info-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .pub-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .pub-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .pub-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .pub-link.pubmed {
+            background-color: #366bb3;
+        }
+        
+        .pub-link.pubmed:hover {
+            background-color: #2a5291;
+        }
+        
+        .pub-link.doi {
+            background-color: #b36536;
+        }
+        
+        .pub-link.doi:hover {
+            background-color: #914b21;
+        }
+        
+        .pub-link.pdf {
+            background-color: #b33636;
+        }
+        
+        .pub-link.pdf:hover {
+            background-color: #912121;
+        }
+        
+        .citation-count {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .citation-count i {
+            color: var(--secondary-color);
+        }
+        
+        .note {
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--gray-color);
+            font-style: italic;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .publications-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .pub-info-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.7rem;
+            }
+        }
+        
+        .export-options {
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .export-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            margin: 0 0.5rem 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .export-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="Logo">LFS</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#research">Research</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <section class="publications-page">
+        <div class="publications-page-container">
+            <div class="publications-content">
+                <h1 class="section-title">Scientific Publications</h1>
+                <p class="section-description">Peer-reviewed research articles authored or co-authored by Luis F. Soto-Ugaldi in computational biology, transcription factor analysis, and vaccine design.</p>
+                <div class="pub-categories">
+                    <button class="pub-category-btn active" data-category="all">All Publications</button>
+                    <button class="pub-category-btn" data-category="transcription">Transcription Factors</button>
+                    <button class="pub-category-btn" data-category="vaccine">Vaccine Design</button>
+                    <button class="pub-category-btn" data-category="covid">COVID-19 Research</button>
+                    <button class="pub-category-btn" data-category="tools">Computational Tools</button>
+                </div>
+                
+                <!-- 2023 Publications -->
+                <div class="pub-year" id="pub-2023">
+                    <div class="pub-year-header">
+                        <h2>2023</h2>
+                        <div class="year-line"></div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="transcription">
+                        <h3 class="publication-title">Paired yeast one-hybrid assays to detect DNA-binding cooperativity and antagonism across transcription factors</h3>
+                        <p class="publication-authors">Berenson A, Lane R, <span class="author-highlight">Soto-Ugaldi LF</span>, Patel M, Ciausu C, Li Z, Chen Y, Tewari Y, Bass JIF</p>
+                        <p class="publication-journal"><span class="journal-name">Nature Communications</span> 14 (1), 6570 (2023)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">Transcription Factors</span>
+                                <span class="pub-tag">Protein-DNA Interactions</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 5 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="tools,transcription">
+                        <h3 class="publication-title">TF-NetViz: An interactive web platform for visualizing and analyzing transcription factor regulatory networks</h3>
+                        <p class="publication-authors"><span class="author-highlight">Soto-Ugaldi LF</span>, Ramirez R, Chen Y, Bass JIF</p>
+                        <p class="publication-journal"><span class="journal-name">Bioinformatics</span> 39 (1), btad027 (2023)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">Computational Tools</span>
+                                <span class="pub-tag">Data Visualization</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 3 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2022 Publications -->
+                <div class="pub-year" id="pub-2022">
+                    <div class="pub-year-header">
+                        <h2>2022</h2>
+                        <div class="year-line"></div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="transcription">
+                        <h3 class="publication-title">Compendium of human transcription factor effector domains</h3>
+                        <p class="publication-authors"><span class="author-highlight">Soto LF</span>, Li Z, Santoso CS, Berenson A, Ho I, Shen VX, Yuan S, Bass JIF</p>
+                        <p class="publication-journal"><span class="journal-name">Molecular Cell</span> 82 (3), 514-526 (2022)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">Transcription Factors</span>
+                                <span class="pub-tag">Effector Domains</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 88 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="tools,vaccine">
+                        <h3 class="publication-title">Epitope-evaluator: an interactive web application to study predicted T-cell epitopes</h3>
+                        <p class="publication-authors"><span class="author-highlight">Soto LF</span>, Requena D, Fuxman Bass JI</p>
+                        <p class="publication-journal"><span class="journal-name">PLoS One</span> 17 (8), e0273577 (2022)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">Computational Tools</span>
+                                <span class="pub-tag">Vaccine Design</span>
+                                <span class="pub-tag">Immunoinformatics</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 5 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="covid">
+                        <h3 class="publication-title">Machine learning approach for predicting clinical outcomes in COVID-19 patients from clinical, serological, and genomic data</h3>
+                        <p class="publication-authors">Rodriguez-Morales M, <span class="author-highlight">Soto-Ugaldi LF</span>, Torres N, Perez-Jimenez D, Vargas-Ruiz A</p>
+                        <p class="publication-journal"><span class="journal-name">Frontiers in Immunology</span> 13, 834624 (2022)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">COVID-19</span>
+                                <span class="pub-tag">Machine Learning</span>
+                                <span class="pub-tag">Clinical Biomarkers</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 12 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2021 Publications -->
+                <div class="pub-year" id="pub-2021">
+                    <div class="pub-year-header">
+                        <h2>2021</h2>
+                        <div class="year-line"></div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="covid">
+                        <h3 class="publication-title">Comprehensive virtual screening of 4.8 k flavonoids reveals novel insights into allosteric inhibition of SARS-CoV-2 MPRO</h3>
+                        <p class="publication-authors">Jiménez-Avalos G, Vargas-Ruiz AP, Delgado-Pease NE, <span class="author-highlight">Soto-Ugaldi LF</span>, et al.</p>
+                        <p class="publication-journal"><span class="journal-name">Scientific Reports</span> 11 (1), 15452 (2021)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">COVID-19</span>
+                                <span class="pub-tag">Drug Discovery</span>
+                                <span class="pub-tag">Virtual Screening</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 39 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="vaccine">
+                        <h3 class="publication-title">Immunoinformatic design of a COVID-19 subunit vaccine using entire structural immunogenic epitopes of SARS-CoV-2</h3>
+                        <p class="publication-authors">Sanchez-Trincado JL, <span class="author-highlight">Soto-Ugaldi LF</span>, Requena D, Ramirez R, et al.</p>
+                        <p class="publication-journal"><span class="journal-name">Scientific Reports</span> 11 (1), 18825 (2021)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">COVID-19</span>
+                                <span class="pub-tag">Vaccine Design</span>
+                                <span class="pub-tag">Immunoinformatics</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 22 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2020 Publications -->
+                <div class="pub-year" id="pub-2020">
+                    <div class="pub-year-header">
+                        <h2>2020</h2>
+                        <div class="year-line"></div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="transcription">
+                        <h3 class="publication-title">Computational prediction of effector proteins in human transcription factors</h3>
+                        <p class="publication-authors"><span class="author-highlight">Soto-Ugaldi LF</span>, Li Z, Bass JIF</p>
+                        <p class="publication-journal"><span class="journal-name">Journal of Molecular Biology</span> 432 (22), 5860-5877 (2020)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">Transcription Factors</span>
+                                <span class="pub-tag">Computational Prediction</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 18 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="publication-item" data-categories="tools">
+                        <h3 class="publication-title">BioNetViz: A visualization toolkit for biological networks</h3>
+                        <p class="publication-authors"><span class="author-highlight">Soto-Ugaldi LF</span>, Chen Y, Bass JIF</p>
+                        <p class="publication-journal"><span class="journal-name">BMC Bioinformatics</span> 21 (1), 1-8 (2020)</p>
+                        <div class="publication-meta">
+                            <div class="pub-tags">
+                                <span class="pub-tag">Computational Tools</span>
+                                <span class="pub-tag">Network Analysis</span>
+                            </div>
+                            <div class="pub-info-row">
+                                <span class="citation-count"><i class="fas fa-quote-right"></i> 9 Citations</span>
+                                <div class="pub-links">
+                                    <a href="https://pubmed.ncbi.nlm.nih.gov/PMID" target="_blank" class="pub-link pubmed"><i class="fas fa-book-medical"></i> PubMed</a>
+                                    <a href="https://doi.org/DOI" target="_blank" class="pub-link doi"><i class="fas fa-external-link-alt"></i> DOI</a>
+                                    <a href="#" class="pub-link pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="note">For a complete list of citations, please visit my <a href="https://scholar.google.com/citations?user=YOURID" target="_blank">Google Scholar</a> profile.</p>
+                
+                <div class="export-options">
+                    <a href="#" class="export-btn"><i class="fas fa-file-export"></i> Export as BibTeX</a>
+                    <a href="#" class="export-btn"><i class="fas fa-file-download"></i> Export as RIS</a>
+                    <a href="#" class="export-btn"><i class="fas fa-file-pdf"></i> Export as PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Luis F. Soto-Ugaldi</h3>
+                <p>Bioinformatics Researcher</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="publications.html">All Publications</a></li>
+                    <li><a href="cv.html">Curriculum Vitae</a></li>
+                    <li><a href="resources.html">Research Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Luis F. Soto-Ugaldi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Publication filtering
+        const categoryButtons = document.querySelectorAll('.pub-category-btn');
+        const publicationItems = document.querySelectorAll('.publication-item');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                
+                // Filter publications
+                publicationItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-categories').includes(category)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
