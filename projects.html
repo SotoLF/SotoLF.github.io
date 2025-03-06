@@ -268,7 +268,7 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="index.html">LFS</a>
+            <a href="index.html"><img src="images/logo.png" alt="Logo">LFS</a>
         </div>
         <ul class="nav-links">
             <li><a href="index.html#about">About</a></li>
@@ -368,152 +368,6 @@
                         <a href="#" target="_blank" class="project-link-btn btn-paper">
                             <i class="fas fa-file-alt"></i>
                             <span>Related Publication</span>
-                        </a>
-                        <a href="#" target="_blank" class="project-link-btn btn-documentation">
-                            <i class="fas fa-book"></i>
-                            <span>Documentation</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Related Projects Section -->
-            <div class="related-projects">
-                <h2 class="related-title">Other Projects</h2>
-                
-                <div class="related-container">
-                    <div class="related-card" data-categories="database visualization">
-                        <img src="/api/placeholder/400/200" alt="TF-Effector DB" class="related-img">
-                        <div class="related-info">
-                            <h3>TF-Effector DB</h3>
-                            <p>Database of transcription factor effector domains with structural and functional annotations.</p>
-                            <a href="#" class="btn">View Project</a>
-                        </div>
-                    </div>
-                    
-                    <div class="related-card" data-categories="analysis">
-                        <img src="/api/placeholder/400/200" alt="VaccineScan" class="related-img">
-                        <div class="related-info">
-                            <h3>VaccineScan</h3>
-                            <p>Immunoinformatic pipeline for vaccine design against bacterial and viral pathogens.</p>
-                            <a href="#" class="btn">View Project</a>
-                        </div>
-                    </div>
-                    
-                    <div class="related-card" data-categories="web-app visualization">
-                        <img src="/api/placeholder/400/200" alt="MultiOmics Explorer" class="related-img">
-                        <div class="related-info">
-                            <h3>MultiOmics Explorer</h3>
-                            <p>Interactive visualization tool for exploring multi-omics datasets in cancer research.</p>
-                            <a href="#" class="btn">View Project</a>
-                        </div>
-                    </div>
-                    
-                    <div class="related-card" data-categories="analysis">
-                        <img src="/api/placeholder/400/200" alt="BioPipe" class="related-img">
-                        <div class="related-info">
-                            <h3>BioPipe</h3>
-                            <p>Modular pipeline for processing and analyzing next-generation sequencing data.</p>
-                            <a href="#" class="btn">View Project</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <h3>Luis F. Soto-Ugaldi</h3>
-                <p>Bioinformatics Researcher</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html#about">About</a></li>
-                    <li><a href="index.html#research">Research</a></li>
-                    <li><a href="index.html#publications">Publications</a></li>
-                    <li><a href="index.html#projects">Projects</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="publications.html">All Publications</a></li>
-                    <li><a href="cv.html">Curriculum Vitae</a></li>
-                    <li><a href="resources.html">Research Resources</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Luis F. Soto-Ugaldi. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Project filtering functionality
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card-large');
-            const relatedCards = document.querySelectorAll('.related-card');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    
-                    const filter = button.getAttribute('data-filter');
-                    
-                    // Filter main project cards
-                    projectCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                    
-                    // Filter related project cards
-                    relatedCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // Add animation when elements come into view
-            const observeElements = document.querySelectorAll('.project-card-large, .related-card');
-            
-            if ('IntersectionObserver' in window && observeElements.length > 0) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('animate-in');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.2 });
-                
-                observeElements.forEach(element => {
-                    element.classList.add('prepare-animation');
-                    observer.observe(element);
-                });
-            }
-        });
-    </script>
-</body>
-</html>
-                            <span>Publication</span>
                         </a>
                         <a href="#" target="_blank" class="project-link-btn btn-documentation">
                             <i class="fas fa-book"></i>
@@ -664,3 +518,149 @@
                         </a>
                         <a href="#" target="_blank" class="project-link-btn btn-paper">
                             <i class="fas fa-file-alt"></i>
+                            <span>Publication</span>
+                        </a>
+                        <a href="#" target="_blank" class="project-link-btn btn-documentation">
+                            <i class="fas fa-book"></i>
+                            <span>Documentation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Projects Section -->
+            <div class="related-projects">
+                <h2 class="related-title">Other Projects</h2>
+                
+                <div class="related-container">
+                    <div class="related-card" data-categories="database visualization">
+                        <img src="/api/placeholder/400/200" alt="TF-Effector DB" class="related-img">
+                        <div class="related-info">
+                            <h3>TF-Effector DB</h3>
+                            <p>Database of transcription factor effector domains with structural and functional annotations.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card" data-categories="analysis">
+                        <img src="/api/placeholder/400/200" alt="VaccineScan" class="related-img">
+                        <div class="related-info">
+                            <h3>VaccineScan</h3>
+                            <p>Immunoinformatic pipeline for vaccine design against bacterial and viral pathogens.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card" data-categories="web-app visualization">
+                        <img src="/api/placeholder/400/200" alt="MultiOmics Explorer" class="related-img">
+                        <div class="related-info">
+                            <h3>MultiOmics Explorer</h3>
+                            <p>Interactive visualization tool for exploring multi-omics datasets in cancer research.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                    
+                    <div class="related-card" data-categories="analysis">
+                        <img src="/api/placeholder/400/200" alt="BioPipe" class="related-img">
+                        <div class="related-info">
+                            <h3>BioPipe</h3>
+                            <p>Modular pipeline for processing and analyzing next-generation sequencing data.</p>
+                            <a href="#" class="btn">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Luis F. Soto-Ugaldi</h3>
+                <p>Bioinformatics Researcher</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="publications.html">All Publications</a></li>
+                    <li><a href="cv.html">Curriculum Vitae</a></li>
+                    <li><a href="resources.html">Research Resources</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Luis F. Soto-Ugaldi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Project filtering functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card-large');
+            const relatedCards = document.querySelectorAll('.related-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Filter main project cards
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                    
+                    // Filter related project cards
+                    relatedCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-categories').includes(filter)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Add animation when elements come into view
+            const observeElements = document.querySelectorAll('.project-card-large, .related-card');
+            
+            if ('IntersectionObserver' in window && observeElements.length > 0) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                observeElements.forEach(element => {
+                    element.classList.add('prepare-animation');
+                    observer.observe(element);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

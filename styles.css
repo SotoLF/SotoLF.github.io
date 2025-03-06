@@ -545,6 +545,10 @@ a:hover {
 }
 
 /* Publications */
+.publications-btn {
+    margin-top: 2rem;
+}
+
 .publications-page-container {
     width: 100%;
     max-width: 100%;
@@ -556,7 +560,7 @@ a:hover {
 }
 
 .publications {
-    padding: 5rem 5%;
+    padding: 5rem 5% 3rem;
     background-color: white;
 }
 
@@ -589,7 +593,7 @@ a:hover {
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
     max-width: 1200px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 5rem;
 }
 
 .publication-card {
@@ -598,6 +602,9 @@ a:hover {
     padding: 1.5rem;
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .publication-card:hover {
@@ -610,6 +617,12 @@ a:hover {
     margin-bottom: 0.75rem;
     color: var(--dark-color);
     line-height: 1.4;
+}
+
+/* Añade un div contenedor para la información inferior */
+.publication-info-bottom {
+    margin-top: auto;  /* Empuja el contenido hacia abajo */
+    padding-top: 1rem;
 }
 
 .publication-card .authors {
